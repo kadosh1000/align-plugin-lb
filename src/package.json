@@ -1,0 +1,14 @@
+{
+  "name": "align-plugin-lb",
+  "version": "1.0.0",
+  "description": "Align load balancer plugin",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Kaholo team (Matan Kadosh)",
+  "license": "ISC",
+  "dependencies": {
+    "mongodb": "^3.6.2"
+  }
+}
