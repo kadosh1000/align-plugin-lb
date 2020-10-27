@@ -18,3 +18,12 @@ Waits until there is a free agent. If tehre isn't a free agent, the method will 
 
 * Environment - The Align environment to look for agents in (i.e. E6)
 * Maps (Array) - Array of maps IDs to include for checking executions in. **Notice:** This is a code only parameter. 
+
+**Return Value:**
+
+The methods returns the first available agent it finds. The object contains the following:
+
+	{
+        name: "AGENT_NAME",
+        _id: AGENT_ID (ObjectID)
+    }
