@@ -50,7 +50,7 @@ class WaiterHelper {
     else {
       await this.sleep(checkInterval);
       const nextRetry = currentRetry ? currentRetry + 1 : 2;
-      console.warn(`Failed to find, continue to try ${nextRetry}`);
+      // console.log(`Failed to find, continue to try ${nextRetry}`);
       return this.waitForFreeAgents(environment, mapsToCheck, {
         checkInterval,
         maxRetries,
