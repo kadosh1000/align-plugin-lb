@@ -16,7 +16,7 @@ Waits until there is a free agent. If tehre isn't a free agent, the method will 
 
 **Parameters:**
 
-* Environment - The Align environment to look for agents in (i.e. E6)
+* Agents Tags - The tags to look for inside the agents. Tags passed will require all of them (AND operator).
 * Maps (Array) - Array of maps IDs to include for checking executions in. **Notice:** This is a code only parameter. 
 
 **Return Value:**

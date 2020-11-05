@@ -37,7 +37,7 @@
       "params": [
         {
           "name": "environment",
-          "viewName": "Environment",
+          "viewName": "Agents Tags",
           "type": "string"
         },
         {

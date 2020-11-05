@@ -20,11 +20,11 @@ class WaiterHelper {
    * @param {*} options.currentRetry - The current retry number. This is a recursive function so it increase itself.
    */
   async waitForFreeAgents(
-    environment,
+    agentTags,
     mapsToCheck,
     { checkInterval, maxRetries, currentRetry }
   ) {
-    const agents = await dbHelper.getLivingAgents(environment);
+    const agents = await dbHelper.getLivingAgents(agentTags);
     const runningExecutions = await dbHelper.getRunningExecutions(mapsToCheck);
 
     const freeAgents = agents.filter((agent) => {
@@ -51,7 +51,7 @@ class WaiterHelper {
       await this.sleep(checkInterval);
       const nextRetry = currentRetry ? currentRetry + 1 : 2;
       // console.log(`Failed to find, continue to try ${nextRetry}`);
-      return this.waitForFreeAgents(environment, mapsToCheck, {
+      return this.waitForFreeAgents(agentTags, mapsToCheck, {
         checkInterval,
         maxRetries,
         currentRetry: nextRetry,

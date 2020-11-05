@@ -11,14 +11,11 @@ class MongoHelper {
     this.dbName = settings.dbName;
   }
 
-  async getLivingAgents(environment) {
+  async getLivingAgents(agentTags) {
     const collection = "agents";
     const query = {
       "status.alive": true,
-      attributes: {
-        $all: ["scanner"],
-      },
-	};
+	  };
 	
 	const queryOptions = {
 		fields: {
@@ -27,9 +24,14 @@ class MongoHelper {
 		}
 	}
 
-    // If specific environment specified add to query
-    if (environment) {
-      query.attributes.$all.push(environment);
+    // If specific agentTags specified add to query
+    if (agentTags) {
+      if (!Array.isArray(agentTags)){
+        throw "Tags must be an array"
+      }
+      query.attributes = {
+        $all: agentTags,
+      }
     }
 
     const db = await this.getDbClient();
