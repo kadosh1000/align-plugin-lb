@@ -13,18 +13,20 @@ class WaiterHelper {
   /**
    * 
    * @param {string} environment - The addition enviorment to match the agents to (beside for "scanner")
-   * @param {Array<string>} mapsToCheck - Array of maps Ids you wish to check executions for
-   * @param {*} options - options object
+   * @param {string} projectId - Id of the project that contains the load balanced maps
    * @param {*} options.checkInterval - The interval in ms to wait between each check.
    * @param {*} options.maxRetries - The maximum amount of retries to do befoe failing the action
    * @param {*} options.currentRetry - The current retry number. This is a recursive function so it increase itself.
    */
   async waitForFreeAgents(
     agentTags,
-    mapsToCheck,
+    projectId,
     { checkInterval, maxRetries, currentRetry }
   ) {
     const agents = await dbHelper.getLivingAgents(agentTags);
+
+    const mapsToCheck = await dbHelper.getMapsIdsByProject(projectId);
+
     const runningExecutions = await dbHelper.getRunningExecutions(mapsToCheck);
 
     const freeAgents = agents.filter((agent) => {
@@ -51,7 +53,7 @@ class WaiterHelper {
       await this.sleep(checkInterval);
       const nextRetry = currentRetry ? currentRetry + 1 : 2;
       // console.log(`Failed to find, continue to try ${nextRetry}`);
-      return this.waitForFreeAgents(agentTags, mapsToCheck, {
+      return this.waitForFreeAgents(agentTags, projectId, {
         checkInterval,
         maxRetries,
         currentRetry: nextRetry,

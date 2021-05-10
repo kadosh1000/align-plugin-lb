@@ -41,8 +41,8 @@
           "type": "string"
         },
         {
-          "name": "mapsToCheck",
-          "viewName": "Maps (Array)",
+          "name": "projectId",
+          "viewName": "Maps Project ID",
           "type": "string"
         }
       ]
