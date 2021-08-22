@@ -6,7 +6,7 @@
   "execProgram": "node",
   "exposeRoute": false,
   "imgUrl": "logo.png",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "settings" : [
     {
       "name": "dbUri",
