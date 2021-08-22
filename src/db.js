@@ -14,7 +14,7 @@ class MongoHelper {
   async getLivingAgents(agentTags) {
     const collection = "agents";
     const query = {
-      "status.alive": true,
+      "status.state":"online"
 	  };
 	
 	const queryOptions = {
@@ -36,6 +36,17 @@ class MongoHelper {
 
     const db = await this.getDbClient();
     const results = await db.collection(collection).find(query, queryOptions).toArray();
+    return results;
+  }
+
+  async getAgentsByProjectId(projectId) {
+    const collection = "maps";
+    const query = {
+      "project": projectId,
+	  };
+
+    const db = await this.getDbClient();
+    const results = await db.collection(collection).find(query).toArray();
     return results;
   }
 
