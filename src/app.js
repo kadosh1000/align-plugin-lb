@@ -16,8 +16,23 @@ async function loadBalance(action, settings) {
   );
 }
 
+async function GetAllAgents(action, settings) {
+  dbHelper.set(settings);
+  
+   return await waiterHelper.waitForAllAgents(
+  action.params.environment,
+  {
+  // default value should be 30000 (30 seconds)
+  checkInterval: settings.checkInterval ? parseInt(settings.checkInterval) : 30000,
+  // default value should be up to 100
+  maxRetries: settings.maxRetries ? parseInt(settings.maxRetries) : 100
+  }
+  );
+}
+
 module.exports = {
   loadBalance,
+  GetAllAgents
 };
 
 /**

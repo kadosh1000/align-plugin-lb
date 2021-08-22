@@ -6,7 +6,7 @@
   "execProgram": "node",
   "exposeRoute": false,
   "imgUrl": "logo.png",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "settings" : [
     {
       "name": "dbUri",
@@ -44,6 +44,17 @@
           "name": "projectId",
           "viewName": "Maps Project ID",
           "type": "string"
+        }
+      ]
+    },
+    {
+      "name": "GetAllAgents",
+      "viewName": "Get All Agents",
+      "params": [
+        {
+        "name": "environment",
+        "viewName": "Agents Tags",
+        "type": "string"
         }
       ]
     }
